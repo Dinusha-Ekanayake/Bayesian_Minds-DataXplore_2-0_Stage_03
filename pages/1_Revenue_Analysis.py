@@ -18,7 +18,7 @@ from src.styles import inject_css, render_kpi_row, section_header, page_header
 from src.charts import (
     fig_revenue_by_seating,
     fig_revenue_by_country,
-    fig_treemap_country_region,
+    fig_seating_share_by_country,
     fig_revenue_by_age_group,
     fig_revenue_country_by_seating,
     fig_revenue_seating_by_gender,
@@ -74,9 +74,9 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    section_header("Revenue by Country & Region (Treemap)")
+    section_header("Seating Region Share by Country")
     if len(df) > 0:
-        st.plotly_chart(fig_treemap_country_region(df), use_container_width=True)
+        st.plotly_chart(fig_seating_share_by_country(df), use_container_width=True)
     else:
         st.info("No data for current filters.")
 

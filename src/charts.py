@@ -82,19 +82,56 @@ def fig_revenue_by_country(df: pd.DataFrame) -> go.Figure:
     return _apply_layout(fig, "Revenue by Country")
 
 
-def fig_treemap_country_region(df: pd.DataFrame) -> go.Figure:
-    """Treemap: Total spend by Country > Seating Region."""
+def fig_seating_share_by_country(df: pd.DataFrame) -> go.Figure:
+    """100% Stacked horizontal bar: Seating Region share by Country."""
+    # Group by Country and Seating Region, then calculate percentages
     grp = df.groupby(["Country", "Seating_Region"])["Total_Spend"].sum().reset_index()
-    fig = px.treemap(
-        grp,
-        path=["Country", "Seating_Region"],
-        values="Total_Spend",
-        color="Country",
-        color_discrete_map=COUNTRY_COLORS,
-        hover_data={"Total_Spend": ":,.0f"},
+    
+    # Calculate totals per country for normalization
+    country_totals = grp.groupby("Country")["Total_Spend"].transform("sum")
+    grp["Share"] = (grp["Total_Spend"] / country_totals) * 100
+    
+    # Define country order by total revenue
+    country_order = (
+        grp.groupby("Country")["Total_Spend"]
+        .sum()
+        .sort_values(ascending=False)
+        .index.tolist()
     )
-    fig.update_traces(textinfo="label+percent parent", hovertemplate="<b>%{label}</b><br>Revenue: $%{value:,.0f}<extra></extra>")
-    return _apply_layout(fig, "Revenue by Country & Seating Region")
+    
+    fig = px.bar(
+        grp,
+        y="Country",
+        x="Share",
+        color="Seating_Region",
+        orientation="h",
+        color_discrete_map=SEATING_COLORS,
+        category_orders={"Seating_Region": SEATING_ORDER, "Country": country_order},
+        text=grp["Share"].apply(lambda x: f"{x:.0f}%"),
+        labels={"Share": "Share of Seating (%)", "Seating_Region": "Seating Region"}
+    )
+    
+    fig.update_traces(
+        textposition="inside", 
+        insidetextanchor="middle",
+        hovertemplate="<b>%{y}</b><br>%{fullData.name}: %{x:.1f}%<extra></extra>"
+    )
+    
+    fig.update_layout(
+        xaxis=dict(ticksuffix="%", range=[0, 100]),
+        legend=dict(
+            orientation="h", 
+            yanchor="bottom", 
+            y=-0.25, 
+            xanchor="center", 
+            x=0.5,
+            title=None
+        ),
+        barmode="stack",
+        height=450  # Slightly taller to accommodate bottom legend
+    )
+    
+    return _apply_layout(fig, "Seating Region Share by Country")
 
 
 def fig_revenue_by_age_group(df: pd.DataFrame) -> go.Figure:
