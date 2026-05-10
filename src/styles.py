@@ -185,7 +185,7 @@ def inject_css():
         }
         .kpi-value {
             font-size: 36px !important;
-            font-weight: 700 !important;
+            font-weight: 600 !important;
             color: #FAFAFA;
             margin: 0;
             line-height: 1.2;
