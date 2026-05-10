@@ -1,4 +1,4 @@
-# DataXplore 2.0 — Company X Analytics Dashboard
+# DataXplore 2.0 - Company X Analytics Dashboard
 
 Developed by **Team Bayesian Minds** for the DataXplore 2.0 Hackathon.
 
