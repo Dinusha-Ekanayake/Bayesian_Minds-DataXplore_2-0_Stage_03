@@ -115,3 +115,15 @@ with st.expander("Filtered Data Preview - first 50 rows"):
         use_container_width=True,
         height=300,
     )
+
+# ── Team Details ──────────────────────────────────────────────────────────────
+st.markdown("---")
+st.markdown("### Prepared By: Team Bayesian Minds")
+
+# Displaying members in a clean format
+st.markdown("""
+- **Dinusha Ekanayake**
+- **Kavinda Mihiran**
+- **Amandi Arangala**
+- **Tharusha Udana**
+""")
