@@ -120,18 +120,55 @@ def fig_revenue_by_age_group(df: pd.DataFrame) -> go.Figure:
     return _apply_layout(fig, "Revenue by Age Group & Visit Type")
 
 
-def fig_sunburst_revenue(df: pd.DataFrame) -> go.Figure:
-    """Sunburst: Country > Seating > Gender revenue drill-down."""
-    grp = df.groupby(["Country", "Seating_Region", "Gender"])["Total_Spend"].sum().reset_index()
-    fig = px.sunburst(
-        grp,
-        path=["Country", "Seating_Region", "Gender"],
-        values="Total_Spend",
-        color="Country",
-        color_discrete_map=COUNTRY_COLORS,
+def fig_revenue_country_by_seating(df: pd.DataFrame) -> go.Figure:
+    """Stacked bar: revenue by Country, stacked by Seating Region."""
+    grp = (
+        df.groupby(["Country", "Seating_Region"])["Total_Spend"]
+        .sum()
+        .reset_index()
+        .sort_values("Total_Spend", ascending=False)
     )
-    fig.update_traces(hovertemplate="<b>%{label}</b><br>Revenue: $%{value:,.0f}<extra></extra>")
-    return _apply_layout(fig, "Revenue Hierarchy: Country → Seating → Gender")
+    country_order = (
+        grp.groupby("Country")["Total_Spend"].sum()
+        .sort_values(ascending=False)
+        .index.tolist()
+    )
+    present_regions = [s for s in SEATING_ORDER if s in grp["Seating_Region"].unique()]
+    fig = px.bar(
+        grp,
+        x="Country",
+        y="Total_Spend",
+        color="Seating_Region",
+        barmode="stack",
+        color_discrete_map=SEATING_COLORS,
+        category_orders={"Country": country_order, "Seating_Region": present_regions},
+        labels={"Total_Spend": "Revenue ($)", "Seating_Region": "Seating Region"},
+        text_auto=False,
+    )
+    fig.update_traces(hovertemplate="<b>%{x}</b> — %{data.name}<br>Revenue: $%{y:,.0f}<extra></extra>")
+    return _apply_layout(fig, "Revenue by Country (stacked by Seating Region)")
+
+
+def fig_revenue_seating_by_gender(df: pd.DataFrame) -> go.Figure:
+    """Grouped bar: revenue by Seating Region, grouped by Gender."""
+    grp = (
+        df.groupby(["Seating_Region", "Gender"])["Total_Spend"]
+        .sum()
+        .reset_index()
+    )
+    present_regions = [s for s in SEATING_ORDER if s in grp["Seating_Region"].unique()]
+    fig = px.bar(
+        grp,
+        x="Seating_Region",
+        y="Total_Spend",
+        color="Gender",
+        barmode="group",
+        color_discrete_map=GENDER_COLORS,
+        category_orders={"Seating_Region": present_regions},
+        labels={"Total_Spend": "Revenue ($)", "Seating_Region": "Seating Region"},
+    )
+    fig.update_traces(hovertemplate="<b>%{x}</b> — %{data.name}<br>Revenue: $%{y:,.0f}<extra></extra>")
+    return _apply_layout(fig, "Revenue by Seating Region (grouped by Gender)")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
