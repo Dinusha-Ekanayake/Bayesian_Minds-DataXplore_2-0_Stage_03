@@ -126,6 +126,14 @@ def inject_css():
             margin-bottom: 15px !important;
         }
 
+        section[data-testid="stSidebar"],
+        section[data-testid="stSidebar"] *,
+        [data-testid="stSidebarNav"],
+        [data-testid="stSidebarNav"] * {
+            transition: none !important;
+            animation: none !important;
+        }
+
         section[data-testid="stSidebar"] {
             transform: translateX(0) !important;
             min-width: 21rem !important;
@@ -135,6 +143,35 @@ def inject_css():
         }
         [data-testid="collapsedControl"],
         [data-testid="stSidebarCollapseButton"] { display: none !important; }
+
+        /* Sidebar Navigation Styling */
+        [data-testid="stSidebarNav"] {
+            padding-top: 1rem !important;
+        }
+        [data-testid="stSidebarNav"] ul {
+            padding-top: 0 !important;
+        }
+        [data-testid="stSidebarNav"] span {
+            font-size: 18px !important;
+            font-weight: 500 !important;
+            color: rgba(255,255,255,0.85) !important;
+        }
+        [data-testid="stSidebarNav"] a {
+            padding: 10px 16px !important;
+            border-radius: 10px !important;
+            margin: 4px 12px !important;
+        }
+        [data-testid="stSidebarNav"] a:hover {
+            background-color: rgba(255,255,255,0.05) !important;
+        }
+        [data-testid="stSidebarNav"] [data-testid="stSidebarNavActive"] {
+            background-color: rgba(255,107,107,0.12) !important;
+            border: 1px solid rgba(255,107,107,0.2) !important;
+        }
+        [data-testid="stSidebarNav"] [data-testid="stSidebarNavActive"] span {
+            color: #FF6B6B !important;
+            font-weight: 600 !important;
+        }
 
         section[data-testid="stSidebar"] .stMarkdown h2 {
             font-size: 24px !important;
