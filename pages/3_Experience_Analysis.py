@@ -26,7 +26,7 @@ from src.charts import (
 
 st.set_page_config(
     page_title="Experience Analysis | DataXplore 2.0",
-    page_icon="⭐",
+    page_icon="•",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -36,7 +36,7 @@ inject_css()
 df_full = prepare_data()
 df = render_sidebar_filters(df_full)
 
-page_header("⭐ Experience Analysis", "Satisfaction scores, recommendation likelihood & correlations")
+page_header("Experience Analysis", "Satisfaction scores, recommendation likelihood & correlations")
 st.markdown("---")
 
 # ── KPI Row ───────────────────────────────────────────────────────────────────

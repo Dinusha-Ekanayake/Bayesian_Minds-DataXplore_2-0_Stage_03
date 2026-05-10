@@ -19,7 +19,7 @@ from src.star_schema import build_star_schema
 
 st.set_page_config(
     page_title="DataXplore 2.0 | Company X Analytics",
-    page_icon="📊",
+    page_icon="•",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -31,7 +31,7 @@ df = render_sidebar_filters(df_full)
 
 # ── Page Header ───────────────────────────────────────────────────────────────
 page_header(
-    "📊 DataXplore 2.0",
+    "DataXplore 2.0",
     "Company X Live Entertainment — Customer Analytics Dashboard",
 )
 
@@ -69,10 +69,10 @@ with col1:
     **Dashboard Sections:**
     | Page | Focus |
     |---|---|
-    | 💰 **Revenue Analysis** | Ticket, merchandise & drink revenue by region, country, age |
-    | 👥 **Customer Analysis** | Demographics, geographic distribution, spending behaviour |
-    | ⭐ **Experience Analysis** | Satisfaction scores, recommendation likelihood, correlations |
-    | 📅 **Time-Based Analysis** | Monthly trends, seasonal patterns, day-of-week heatmap |
+    | **Revenue Analysis** | Ticket, merchandise & drink revenue by region, country, age |
+    | **Customer Analysis** | Demographics, geographic distribution, spending behaviour |
+    | **Experience Analysis** | Satisfaction scores, recommendation likelihood, correlations |
+    | **Time-Based Analysis** | Monthly trends, seasonal patterns, day-of-week heatmap |
 
     Use the **sidebar filters** to slice data by date, country, seating region, gender, age group,
     and visit type. Filters persist across all pages.
@@ -109,7 +109,7 @@ with col5:
 st.markdown("---")
 
 # ── Filtered Data Preview ─────────────────────────────────────────────────────
-with st.expander("📋 Filtered Data Preview (first 50 rows)"):
+with st.expander("Filtered Data Preview — first 50 rows"):
     st.dataframe(
         df.head(50),
         use_container_width=True,

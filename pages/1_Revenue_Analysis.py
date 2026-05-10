@@ -26,7 +26,7 @@ from src.charts import (
 
 st.set_page_config(
     page_title="Revenue Analysis | DataXplore 2.0",
-    page_icon="💰",
+    page_icon="•",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -36,7 +36,7 @@ inject_css()
 df_full = prepare_data()
 df = render_sidebar_filters(df_full)
 
-page_header("💰 Revenue Analysis", "Ticket, merchandise & drink revenue across segments")
+page_header("Revenue Analysis", "Ticket, merchandise & drink revenue across segments")
 st.markdown("---")
 
 # ── KPI Row ───────────────────────────────────────────────────────────────────
@@ -111,9 +111,9 @@ st.markdown("---")
 # ── Avg Spend KPI ──────────────────────────────────────────────────────────────
 avg_spend = AverageSpendPerCustomer(df)
 st.markdown(
-    f"""<div style="background:#1A1F2E;border-radius:12px;padding:16px 24px;border-left:4px solid #00C48C;display:inline-block;margin-top:8px;">
-    <span style="color:#9CA3AF;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;">Avg Spend per Customer</span>
-    <br><span style="color:#FAFAFA;font-size:28px;font-weight:700;">{fmt_currency(avg_spend)}</span>
+    f"""<div style="background:linear-gradient(135deg,rgba(255,255,255,0.055) 0%,rgba(255,255,255,0.020) 100%);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:16px;padding:18px 24px;border:1px solid rgba(255,255,255,0.07);border-left:4px solid #00C48C;display:inline-block;margin-top:8px;box-shadow:0 8px 32px rgba(0,0,0,0.45);">
+    <span style="color:rgba(156,163,175,0.9);font-size:11px;text-transform:uppercase;letter-spacing:0.07em;font-weight:500;">Avg Spend per Customer</span>
+    <br><span style="color:#FAFAFA;font-size:28px;font-weight:700;letter-spacing:-0.02em;">{fmt_currency(avg_spend)}</span>
     </div>""",
     unsafe_allow_html=True,
 )

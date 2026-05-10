@@ -23,7 +23,7 @@ from src.charts import (
 
 st.set_page_config(
     page_title="Time-Based Analysis | DataXplore 2.0",
-    page_icon="📅",
+    page_icon="•",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -33,7 +33,7 @@ inject_css()
 df_full = prepare_data()
 df = render_sidebar_filters(df_full)
 
-page_header("📅 Time-Based Analysis", "Monthly revenue trends, seasonal patterns & temporal insights")
+page_header("Time-Based Analysis", "Monthly revenue trends, seasonal patterns & temporal insights")
 st.markdown("---")
 
 # ── KPI Row ───────────────────────────────────────────────────────────────────
