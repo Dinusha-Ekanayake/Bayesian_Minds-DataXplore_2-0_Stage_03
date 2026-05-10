@@ -485,13 +485,18 @@ def fig_monthly_revenue_streams(df: pd.DataFrame) -> go.Figure:
         ("Merch_Revenue", "#4ECDC4", "Merchandise"),
         ("Ticket_Revenue", "#FF6B6B", "Tickets"),
     ]
+    def hex_to_rgba(hex_color: str, alpha: float) -> str:
+        h = hex_color.lstrip("#")
+        r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+        return f"rgba({r},{g},{b},{alpha})"
+
     for col, color, name in stream_info:
         fig.add_trace(go.Scatter(
             x=mdf["Month_Label"],
             y=mdf[col],
             mode="lines",
             stackgroup="one",
-            fillcolor=color.replace("#", "rgba(") + ",0.7)",
+            fillcolor=hex_to_rgba(color, 0.7),
             line=dict(color=color, width=1.5),
             name=name,
             hovertemplate=f"<b>%{{x}}</b><br>{name}: $%{{y:,.0f}}<extra></extra>",
