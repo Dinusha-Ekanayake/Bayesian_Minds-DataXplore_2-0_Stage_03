@@ -12,6 +12,10 @@ def prepare_data() -> pd.DataFrame:
 
     # ── Type Casting ───────────────────────────────────────────────────────
     df["Visit_Date"] = pd.to_datetime(df["Visit_Date"])
+
+    # Exclude partial month (September) to prevent skewing time-based trend charts
+    df = df[df["Visit_Date"] < "2025-09-01"]
+
     df["Age"] = df["Age"].astype(int)
     df["Num_Tickets"] = df["Num_Tickets"].astype(int)
     df["Repeat_Visit"] = df["Repeat_Visit"].astype(int)
@@ -23,7 +27,33 @@ def prepare_data() -> pd.DataFrame:
 
     # ── Derived Columns ────────────────────────────────────────────────────
     df["Ticket_Revenue"] = df["Ticket_Price"] * df["Num_Tickets"]
-    df["Total_Spend"] = df["Ticket_Revenue"] + df["Merchandise_Spend"] + df["Drink_Spend"]
+    df["Ancillary_Spend"] = df["Merchandise_Spend"] + df["Drink_Spend"]
+    df["Total_Spend"] = df["Ticket_Revenue"] + df["Ancillary_Spend"]
+
+    # Superfan Flag: Spent more on merch & drinks than on the ticket itself
+    df["Is_Superfan"] = df["Ancillary_Spend"] > df["Ticket_Revenue"]
+    df["Customer_Segment"] = np.where(df["Is_Superfan"], "Superfan", "Standard")
+
+    # NPS (Net Promoter Score) Segmentation
+    df["NPS_Category"] = pd.cut(
+        df["Recommendation_Likelihood"],
+        bins=[-np.inf, 6, 8, 10],
+        labels=["Detractor", "Passive", "Promoter"]
+    ).astype(str)
+
+    # Group/Party Size Segmentation
+    df["Party_Size"] = pd.cut(
+        df["Num_Tickets"],
+        bins=[0, 1, 2, np.inf],
+        labels=["Solo", "Couple", "Group (3+)"]
+    ).astype(str)
+
+    # Satisfaction Bucket
+    df["Satisfaction_Tier"] = pd.cut(
+        df["Satisfaction_Score"],
+        bins=[-np.inf, 6, 8, 10],
+        labels=["Low (0-6)", "Medium (7-8)", "High (9-10)"]
+    ).astype(str)
 
     df["Month_Label"] = df["Visit_Date"].dt.strftime("%b %Y")
     df["Month_Num"] = df["Visit_Date"].dt.to_period("M")
