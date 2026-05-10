@@ -366,7 +366,39 @@ def inject_css():
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.05);
         }
+
+        /* Sidebar Section Headers */
+        .sidebar-header {
+            font-size: 20px !important;
+            font-weight: 700 !important;
+            color: #FAFAFA !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            margin: 20px 0 10px 0 !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sidebar-header i {
+            color: #FF6B6B;
+        }
+        .filter-label {
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            color: rgba(255,255,255,0.5) !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.08em !important;
+            margin-bottom: 6px !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .filter-label i {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+        }
         </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         """,
         unsafe_allow_html=True,
     )
