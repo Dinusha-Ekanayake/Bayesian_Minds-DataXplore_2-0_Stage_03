@@ -110,6 +110,22 @@ def inject_css():
             background-attachment: fixed;
         }
 
+        .main .stMarkdown h2 {
+            font-size: 32px !important;
+            font-weight: 700 !important;
+            color: #FAFAFA !important;
+            margin-top: 40px !important;
+            margin-bottom: 20px !important;
+        }
+
+        .main .stMarkdown h3 {
+            font-size: 26px !important;
+            font-weight: 600 !important;
+            color: #FAFAFA !important;
+            margin-top: 30px !important;
+            margin-bottom: 15px !important;
+        }
+
         section[data-testid="stSidebar"] {
             transform: translateX(0) !important;
             min-width: 21rem !important;
@@ -121,24 +137,26 @@ def inject_css():
         [data-testid="stSidebarCollapseButton"] { display: none !important; }
 
         section[data-testid="stSidebar"] .stMarkdown h2 {
-            font-size: 13px !important;
-            font-weight: 600 !important;
-            letter-spacing: 0.08em !important;
-            text-transform: uppercase !important;
-            color: rgba(255,255,255,0.35) !important;
-        }
-        section[data-testid="stSidebar"] label {
-            font-size: 11px !important;
-            font-weight: 500 !important;
+            font-size: 24px !important;
+            font-weight: 700 !important;
             letter-spacing: 0.04em !important;
             text-transform: uppercase !important;
-            color: rgba(255,255,255,0.5) !important;
+            color: rgba(255,255,255,0.7) !important;
+            margin-bottom: 15px !important;
+        }
+        section[data-testid="stSidebar"] label {
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.02em !important;
+            text-transform: uppercase !important;
+            color: rgba(255,255,255,0.6) !important;
         }
         section[data-testid="stSidebar"] [data-baseweb="select"] > div,
         section[data-testid="stSidebar"] [data-baseweb="input"] > div {
             background: rgba(255,255,255,0.04) !important;
             border: 1px solid rgba(255,255,255,0.08) !important;
             border-radius: 8px !important;
+            min-height: 45px !important;
         }
         section[data-testid="stSidebar"] [data-baseweb="select"] > div:hover {
             border-color: rgba(255,107,107,0.4) !important;
@@ -192,12 +210,12 @@ def inject_css():
             letter-spacing: -0.02em;
         }
         .kpi-label {
-            font-size: 14px;
+            font-size: 18px;
             color: rgba(156,163,175,0.9);
             margin: 8px 0 0 0;
             text-transform: uppercase;
             letter-spacing: 0.07em;
-            font-weight: 500;
+            font-weight: 600;
         }
         .kpi-delta {
             font-size: 14px;
@@ -210,12 +228,12 @@ def inject_css():
         .delta-neutral  { color: rgba(156,163,175,0.8); }
 
         .section-header {
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: 700;
             color: #FAFAFA;
             letter-spacing: 0.01em;
-            margin: 28px 0 14px 0;
-            padding-left: 12px;
+            margin: 32px 0 16px 0;
+            padding-left: 16px;
             position: relative;
         }
         .section-header::before {
@@ -224,32 +242,32 @@ def inject_css():
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: 3px;
+            width: 4px;
             height: 100%;
             background: linear-gradient(180deg, #FF6B6B 0%, rgba(255,107,107,0.3) 100%);
             border-radius: 2px;
         }
 
         .page-title {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 800;
             color: #FAFAFA;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             letter-spacing: -0.03em;
-            line-height: 1.15;
+            line-height: 1.1;
         }
         .page-title-accent {
             display: block;
-            width: 48px;
-            height: 3px;
+            width: 64px;
+            height: 4px;
             background: linear-gradient(90deg, #FF6B6B 0%, rgba(255,107,107,0) 100%);
             border-radius: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .page-subtitle {
-            font-size: 14px;
-            color: rgba(156,163,175,0.85);
-            margin-bottom: 24px;
+            font-size: 22px;
+            color: rgba(156,163,175,0.9);
+            margin-bottom: 32px;
             font-weight: 400;
             letter-spacing: 0.01em;
         }
@@ -268,14 +286,14 @@ def inject_css():
             padding: 14px 16px !important;
         }
         [data-testid="stMetricLabel"] {
-            font-size: 11px !important;
-            font-weight: 500 !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
             letter-spacing: 0.06em !important;
             text-transform: uppercase !important;
             color: rgba(156,163,175,0.8) !important;
         }
         [data-testid="stMetricValue"] {
-            font-size: 22px !important;
+            font-size: 28px !important;
             font-weight: 700 !important;
             letter-spacing: -0.01em !important;
         }
@@ -287,8 +305,8 @@ def inject_css():
             overflow: hidden;
         }
         [data-testid="stExpander"] summary {
-            font-size: 13px !important;
-            font-weight: 500 !important;
+            font-size: 18px !important;
+            font-weight: 600 !important;
             padding: 12px 16px !important;
         }
         [data-testid="stExpander"] summary:hover {
