@@ -80,39 +80,7 @@ with col1:
 
 with col2:
     section_header("Star Schema Model")
-    st.markdown("""
-    ```
-    ┌─────────────────┐
-    │  dim_customer   │
-    │  Customer_ID PK │
-    │  Age, Gender    │
-    │  Age_Group      │
-    │  Spend_Tier     │
-    └────────┬────────┘
-             │
-    ┌────────┴──────────────────────────────┐
-    │            fact_transactions          │
-    │  Customer_ID FK  │  Date_Key FK       │
-    │  Seating_Key FK  │  Country_Key FK    │
-    │  Ticket_Revenue  │  Total_Spend       │
-    │  Satisfaction    │  Recommendation    │
-    └────────┬──────────────────────────────┘
-      ┌──────┘                 └──────┐
-    ┌─┴───────────┐      ┌───────────┴──┐
-    │  dim_date   │      │ dim_geography│
-    │  Date_Key PK│      │ Country_Key  │
-    │  Day/Month  │      │ Country      │
-    │  Quarter    │      │ Continent    │
-    │  Year       │      └──────────────┘
-    └─────────────┘
-    ┌──────────────────┐
-    │   dim_seating    │
-    │  Seating_Key PK  │
-    │  Seating_Region  │
-    │  Ticket_Price    │
-    └──────────────────┘
-    ```
-    """)
+    st.image("model.jpeg", use_container_width=True)
 
 st.markdown("---")
 
