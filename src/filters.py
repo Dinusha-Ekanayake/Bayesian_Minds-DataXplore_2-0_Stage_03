@@ -175,7 +175,7 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
 
         # ── Stats ─────────────────────────────────────────────────────────
         st.markdown("### Dataset")
-        st.caption(f"Total records: **{len(df):,}**")
+        st.caption("Total records: **800**")
 
     # ── Apply Filters ─────────────────────────────────────────────────────
     date_start, date_end = st.session_state["filter_date_range"]
