@@ -57,13 +57,26 @@ KPI_ACCENT = {
 PLOTLY_LAYOUT = dict(
     template="plotly_dark",
     paper_bgcolor="rgba(0,0,0,0)",
-    plot_bgcolor="rgba(14,17,23,0.6)",
-    font=dict(family="sans-serif", color="#FAFAFA"),
+    plot_bgcolor="rgba(8,13,26,0.7)",
+    font=dict(family="'Inter', sans-serif", color="#FAFAFA", size=12),
     margin=dict(l=40, r=20, t=50, b=40),
     legend=dict(
-        bgcolor="rgba(26,31,46,0.8)",
-        bordercolor="rgba(255,255,255,0.1)",
+        bgcolor="rgba(17,24,39,0.85)",
+        bordercolor="rgba(255,255,255,0.06)",
         borderwidth=1,
+        font=dict(family="'Inter', sans-serif", size=11),
+    ),
+    xaxis=dict(
+        gridcolor="rgba(255,255,255,0.04)",
+        linecolor="rgba(255,255,255,0.12)",
+        tickfont=dict(family="'Inter', sans-serif", size=11),
+        title_font=dict(family="'Inter', sans-serif", size=12),
+    ),
+    yaxis=dict(
+        gridcolor="rgba(255,255,255,0.04)",
+        linecolor="rgba(255,255,255,0.12)",
+        tickfont=dict(family="'Inter', sans-serif", size=11),
+        title_font=dict(family="'Inter', sans-serif", size=12),
     ),
 )
 
@@ -74,38 +87,101 @@ def inject_css():
     st.markdown(
         """
         <style>
-        /* Hide Streamlit branding */
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header {visibility: hidden;}
-        /* Force sidebar always visible regardless of browser saved state */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        html, body, [class*="css"], .stApp, .stMarkdown, button, input, select, textarea, label {
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        #MainMenu { visibility: hidden; }
+        footer    { visibility: hidden; }
+        header    { visibility: hidden; }
+
+        ::-webkit-scrollbar             { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track       { background: transparent; }
+        ::-webkit-scrollbar-thumb       { background: rgba(255,255,255,0.12); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,107,107,0.45); }
+
+        .stApp {
+            background:
+                radial-gradient(ellipse at 20% 10%, rgba(255,107,107,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 90%, rgba(74,158,255,0.03) 0%, transparent 55%),
+                #080D1A;
+            background-attachment: fixed;
+        }
+
         section[data-testid="stSidebar"] {
             transform: translateX(0) !important;
             min-width: 21rem !important;
             visibility: visible !important;
-            background-color: #1A1F2E;
-            border-right: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, #0D1425 0%, #0A1020 60%, #080D1A 100%);
+            border-right: 1px solid rgba(255,255,255,0.06);
         }
-        /* Hide both collapse and expand controls */
         [data-testid="collapsedControl"],
-        [data-testid="stSidebarCollapseButton"] {
-            display: none !important;
+        [data-testid="stSidebarCollapseButton"] { display: none !important; }
+
+        section[data-testid="stSidebar"] .stMarkdown h2 {
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            color: rgba(255,255,255,0.35) !important;
+        }
+        section[data-testid="stSidebar"] label {
+            font-size: 11px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.04em !important;
+            text-transform: uppercase !important;
+            color: rgba(255,255,255,0.5) !important;
+        }
+        section[data-testid="stSidebar"] [data-baseweb="select"] > div,
+        section[data-testid="stSidebar"] [data-baseweb="input"] > div {
+            background: rgba(255,255,255,0.04) !important;
+            border: 1px solid rgba(255,255,255,0.08) !important;
+            border-radius: 8px !important;
+        }
+        section[data-testid="stSidebar"] [data-baseweb="select"] > div:hover {
+            border-color: rgba(255,107,107,0.4) !important;
+        }
+        section[data-testid="stSidebar"] .stButton > button {
+            background: rgba(255,107,107,0.08) !important;
+            border: 1px solid rgba(255,107,107,0.25) !important;
+            color: #FF6B6B !important;
+            border-radius: 8px !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.03em !important;
+        }
+        section[data-testid="stSidebar"] .stButton > button:hover {
+            background: rgba(255,107,107,0.16) !important;
+            border-color: rgba(255,107,107,0.5) !important;
         }
 
-        /* Main background */
-        .stApp {
-            background-color: #0E1117;
-        }
-
-        /* KPI Card */
         .kpi-card {
-            background: #1A1F2E;
-            border-radius: 12px;
-            padding: 18px 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.020) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 20px 22px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.07) inset;
             margin-bottom: 8px;
+            border: 1px solid rgba(255,255,255,0.07);
             border-left: 4px solid;
-            height: 110px;
+            height: 115px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 4px; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.18) 0%, transparent 70%);
+        }
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.09) inset;
         }
         .kpi-value {
             font-size: 28px;
@@ -113,50 +189,140 @@ def inject_css():
             color: #FAFAFA;
             margin: 0;
             line-height: 1.2;
+            letter-spacing: -0.02em;
         }
         .kpi-label {
-            font-size: 12px;
-            color: #9CA3AF;
-            margin: 4px 0 0 0;
+            font-size: 11px;
+            color: rgba(156,163,175,0.9);
+            margin: 5px 0 0 0;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.07em;
+            font-weight: 500;
         }
         .kpi-delta {
-            font-size: 13px;
+            font-size: 12px;
+            font-weight: 500;
             margin-top: 6px;
+            letter-spacing: 0.01em;
         }
         .delta-positive { color: #00C48C; }
         .delta-negative { color: #FF6B6B; }
-        .delta-neutral  { color: #9CA3AF; }
+        .delta-neutral  { color: rgba(156,163,175,0.8); }
 
-        /* Section headers */
         .section-header {
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
             color: #FAFAFA;
-            border-bottom: 2px solid #FF6B6B;
-            padding-bottom: 6px;
-            margin: 24px 0 16px 0;
+            letter-spacing: 0.01em;
+            margin: 28px 0 14px 0;
+            padding-left: 12px;
+            position: relative;
+        }
+        .section-header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #FF6B6B 0%, rgba(255,107,107,0.3) 100%);
+            border-radius: 2px;
         }
 
-        /* Page title */
         .page-title {
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 36px;
+            font-weight: 800;
             color: #FAFAFA;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+        .page-title-accent {
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF6B6B 0%, rgba(255,107,107,0) 100%);
+            border-radius: 2px;
+            margin-bottom: 10px;
         }
         .page-subtitle {
             font-size: 14px;
-            color: #9CA3AF;
+            color: rgba(156,163,175,0.85);
             margin-bottom: 24px;
+            font-weight: 400;
+            letter-spacing: 0.01em;
         }
 
-        /* Divider */
-        hr.styled {
-            border: none;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            margin: 20px 0;
+        .main hr, [data-testid="stVerticalBlock"] hr, hr.styled {
+            border: none !important;
+            height: 1px !important;
+            background: linear-gradient(90deg, rgba(255,107,107,0.35) 0%, rgba(255,255,255,0.06) 30%, transparent 100%) !important;
+            margin: 24px 0 !important;
+        }
+
+        [data-testid="stMetric"] {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            padding: 14px 16px !important;
+        }
+        [data-testid="stMetricLabel"] {
+            font-size: 11px !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.06em !important;
+            text-transform: uppercase !important;
+            color: rgba(156,163,175,0.8) !important;
+        }
+        [data-testid="stMetricValue"] {
+            font-size: 22px !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.01em !important;
+        }
+
+        [data-testid="stExpander"] {
+            border: 1px solid rgba(255,255,255,0.07) !important;
+            border-radius: 12px !important;
+            background: rgba(255,255,255,0.025) !important;
+            overflow: hidden;
+        }
+        [data-testid="stExpander"] summary {
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            padding: 12px 16px !important;
+        }
+        [data-testid="stExpander"] summary:hover {
+            background: rgba(255,255,255,0.03) !important;
+        }
+
+        [data-testid="stAlert"] {
+            background: rgba(74,158,255,0.08) !important;
+            border: 1px solid rgba(74,158,255,0.2) !important;
+            border-radius: 10px !important;
+            font-size: 13px !important;
+        }
+
+        [data-testid="stDataFrame"] > div {
+            border: 1px solid rgba(255,255,255,0.07) !important;
+            border-radius: 10px !important;
+            overflow: hidden;
+        }
+
+        [data-baseweb="select"] > div {
+            background: rgba(255,255,255,0.04) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            border-radius: 8px !important;
+            font-size: 13px !important;
+        }
+        [data-baseweb="select"] > div:focus-within {
+            border-color: rgba(255,107,107,0.5) !important;
+            box-shadow: 0 0 0 2px rgba(255,107,107,0.12) !important;
+        }
+
+        [data-testid="stPlotlyChart"] {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
         }
         </style>
         """,
@@ -209,6 +375,10 @@ def section_header(title: str):
 
 
 def page_header(title: str, subtitle: str = ""):
-    st.markdown(f'<div class="page-title">{title}</div>', unsafe_allow_html=True)
+    st.markdown(
+        f'<div class="page-title">{title}</div>'
+        f'<div class="page-title-accent"></div>',
+        unsafe_allow_html=True,
+    )
     if subtitle:
         st.markdown(f'<div class="page-subtitle">{subtitle}</div>', unsafe_allow_html=True)
