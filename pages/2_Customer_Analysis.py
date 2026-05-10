@@ -119,3 +119,52 @@ if len(df) > 0:
     st.plotly_chart(fig_age_vs_spend_scatter(df), use_container_width=True)
 else:
     st.info("No data for current filters.")
+
+st.markdown("---")
+
+# ── Row 5: Outliers & High Spenders Analysis ──────────────────────────────────
+section_header("Outliers & High Spenders Analysis")
+
+st.markdown("""
+Statistical analysis identified several high spenders within the dataset. These are **genuine outliers** representing our most valuable customers (e.g., VIP ticket holders purchasing significant merchandise and drinks), not data errors. Real business data contains high spenders!
+""")
+
+def count_outliers(series):
+    Q1 = series.quantile(0.25)
+    Q3 = series.quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    return ((series < lower_bound) | (series > upper_bound)).sum()
+
+if len(df) > 0:
+    merch_outliers = count_outliers(df["Merchandise_Spend"])
+    drink_outliers = count_outliers(df["Drink_Spend"])
+    max_spend = df["Total_Spend"].max()
+    max_spend_row = df[df["Total_Spend"] == max_spend].iloc[0]
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Merchandise Spend Outliers", f"{merch_outliers} customers")
+    with col2:
+        st.metric("Drink Spend Outliers", f"{drink_outliers} customers")
+    with col3:
+        st.metric(
+            "Highest Total Spend", 
+            fmt_currency(max_spend), 
+            f"{max_spend_row['Seating_Region']} × {int(max_spend_row['Num_Tickets'])} tickets"
+        )
+    
+    st.markdown("**Top 10 Highest Spenders**")
+    top_spenders = df.nlargest(10, "Total_Spend")[
+        ["Customer_ID", "Seating_Region", "Num_Tickets", "Ticket_Revenue", "Merchandise_Spend", "Drink_Spend", "Total_Spend"]
+    ].reset_index(drop=True)
+    
+    # Format currency columns for display
+    display_df = top_spenders.copy()
+    for col in ["Ticket_Revenue", "Merchandise_Spend", "Drink_Spend", "Total_Spend"]:
+        display_df[col] = display_df[col].apply(lambda x: f"${x:,.2f}")
+        
+    st.dataframe(display_df, use_container_width=True)
+else:
+    st.info("No data for current filters.")
