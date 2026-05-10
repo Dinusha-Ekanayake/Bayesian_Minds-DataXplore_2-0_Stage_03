@@ -20,7 +20,8 @@ from src.charts import (
     fig_revenue_by_country,
     fig_treemap_country_region,
     fig_revenue_by_age_group,
-    fig_sunburst_revenue,
+    fig_revenue_country_by_seating,
+    fig_revenue_seating_by_gender,
 )
 
 st.set_page_config(
@@ -88,12 +89,22 @@ with col2:
 
 st.markdown("---")
 
-# ── Sunburst ──────────────────────────────────────────────────────────────────
-section_header("Revenue Hierarchy: Country → Seating → Gender")
-if len(df) > 0:
-    st.plotly_chart(fig_sunburst_revenue(df), use_container_width=True)
-else:
-    st.info("No data for current filters.")
+# ── Revenue Breakdown ─────────────────────────────────────────────────────────
+col1, col2 = st.columns(2)
+
+with col1:
+    section_header("Revenue by Country & Seating Tier")
+    if len(df) > 0:
+        st.plotly_chart(fig_revenue_country_by_seating(df), use_container_width=True)
+    else:
+        st.info("No data for current filters.")
+
+with col2:
+    section_header("Revenue by Seating Tier & Gender")
+    if len(df) > 0:
+        st.plotly_chart(fig_revenue_seating_by_gender(df), use_container_width=True)
+    else:
+        st.info("No data for current filters.")
 
 st.markdown("---")
 
