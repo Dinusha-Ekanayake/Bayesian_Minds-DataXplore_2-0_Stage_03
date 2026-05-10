@@ -95,7 +95,7 @@ def inject_css():
 
         #MainMenu { visibility: hidden; }
         footer    { visibility: hidden; }
-        header    { visibility: hidden; }
+        .stDeployButton { display: none; }
 
         ::-webkit-scrollbar             { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track       { background: transparent; }
@@ -126,23 +126,10 @@ def inject_css():
             margin-bottom: 15px !important;
         }
 
-        section[data-testid="stSidebar"],
-        section[data-testid="stSidebar"] *,
-        [data-testid="stSidebarNav"],
-        [data-testid="stSidebarNav"] * {
-            transition: none !important;
-            animation: none !important;
-        }
-
         section[data-testid="stSidebar"] {
-            transform: translateX(0) !important;
-            min-width: 21rem !important;
-            visibility: visible !important;
             background: linear-gradient(180deg, #0D1425 0%, #0A1020 60%, #080D1A 100%);
             border-right: 1px solid rgba(255,255,255,0.06);
         }
-        [data-testid="collapsedControl"],
-        [data-testid="stSidebarCollapseButton"] { display: none !important; }
 
         /* Sidebar Navigation Styling */
         [data-testid="stSidebarNav"] {
