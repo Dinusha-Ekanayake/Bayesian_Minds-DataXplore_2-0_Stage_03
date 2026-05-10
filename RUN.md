@@ -51,10 +51,10 @@ The dashboard will open automatically at **http://localhost:8501**
 | URL | Page |
 |---|---|
 | `http://localhost:8501` | Overview |
-| `http://localhost:8501/Revenue_Analysis` | 💰 Revenue Analysis |
-| `http://localhost:8501/Customer_Analysis` | 👥 Customer Analysis |
-| `http://localhost:8501/Experience_Analysis` | ⭐ Experience Analysis |
-| `http://localhost:8501/Time_Based_Analysis` | 📅 Time-Based Analysis |
+| `http://localhost:8501/Revenue_Analysis` | Revenue Analysis |
+| `http://localhost:8501/Customer_Analysis` | Customer Analysis |
+| `http://localhost:8501/Experience_Analysis` | Experience Analysis |
+| `http://localhost:8501/Time_Based_Analysis` | Time-Based Analysis |
 
 ---
 
