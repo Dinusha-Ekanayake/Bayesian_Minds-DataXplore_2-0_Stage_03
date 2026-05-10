@@ -11,7 +11,7 @@ from src.data_prep import prepare_data
 from src.filters import render_sidebar_filters
 from src.kpi import (
     RepeatVisitRate, AverageSpendPerCustomer,
-    fmt_count, fmt_pct, fmt_currency, fmt_score,
+    fmt_count, fmt_pct, fmt_currency,
 )
 from src.styles import inject_css, render_kpi_row, section_header, page_header
 from src.charts import (
@@ -45,7 +45,7 @@ section_header("Customer KPIs")
 total_customers = len(df)
 avg_tickets = df["Num_Tickets"].mean() if len(df) > 0 else 0
 repeat_rate = RepeatVisitRate(df)
-avg_spend = AverageSpendPerCustomer(df)
+avg_spend = AverageSpendPerCustomer(df) if len(df) > 0 else 0
 
 render_kpi_row([
     {"label": "Total Customers",    "value": fmt_count(total_customers),   "category": "customer"},
