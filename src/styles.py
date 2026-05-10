@@ -152,14 +152,14 @@ def inject_css():
             padding-top: 0 !important;
         }
         [data-testid="stSidebarNav"] span {
-            font-size: 18px !important;
+            font-size: 16px !important;
             font-weight: 500 !important;
             color: rgba(255,255,255,0.85) !important;
         }
         [data-testid="stSidebarNav"] a {
-            padding: 10px 16px !important;
-            border-radius: 10px !important;
-            margin: 4px 12px !important;
+            padding: 8px 14px !important;
+            border-radius: 8px !important;
+            margin: 3px 10px !important;
         }
         [data-testid="stSidebarNav"] a:hover {
             background-color: rgba(255,255,255,0.05) !important;
