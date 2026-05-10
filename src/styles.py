@@ -78,16 +78,23 @@ def inject_css():
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         header {visibility: hidden;}
+        /* Force sidebar always visible regardless of browser saved state */
+        section[data-testid="stSidebar"] {
+            transform: translateX(0) !important;
+            min-width: 21rem !important;
+            visibility: visible !important;
+            background-color: #1A1F2E;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        /* Hide both collapse and expand controls */
+        [data-testid="collapsedControl"],
+        [data-testid="stSidebarCollapseButton"] {
+            display: none !important;
+        }
 
         /* Main background */
         .stApp {
             background-color: #0E1117;
-        }
-
-        /* Sidebar */
-        section[data-testid="stSidebar"] {
-            background-color: #1A1F2E;
-            border-right: 1px solid rgba(255,255,255,0.08);
         }
 
         /* KPI Card */
