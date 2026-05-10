@@ -131,4 +131,4 @@ The dashboard will open automatically at **http://localhost:8501**
 *   **Tharusha Udana**
 
 ---
-*Created for the DataXplore 2.0 Dashboard Hackathon — April 2026.*
+*Created for the DataXplore 2.0 Dashboard Hackathon - April 2026.*
