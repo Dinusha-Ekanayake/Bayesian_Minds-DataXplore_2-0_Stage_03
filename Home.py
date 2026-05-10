@@ -76,7 +76,7 @@ with col1:
     | **Time-Based Analysis** | Monthly trends, seasonal patterns, day-of-week heatmap |
 
     Use the **sidebar filters** to slice data by date, country, seating region, gender, age group,
-    and visit type. Filters persist across all pages.
+    and visit type. Filters reset to default ("All") whenever you navigate to a new page.
     """)
 
 with col2:

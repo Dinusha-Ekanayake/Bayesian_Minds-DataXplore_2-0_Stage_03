@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import inspect
 
 from src.data_prep import prepare_data
 from src.styles import inject_css
@@ -66,6 +67,19 @@ def _visit_type_callback():
 def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
     """Render sidebar filters and return the filtered DataFrame."""
     
+    # ── Page Change Detection ─────────────────────────────────────────────
+    # Detect if we navigated to a new page to reset filters
+    current_page = inspect.stack()[1].filename
+    if "last_page" not in st.session_state:
+        st.session_state["last_page"] = current_page
+    
+    if st.session_state["last_page"] != current_page:
+        st.session_state["last_page"] = current_page
+        keys_to_clear = [k for k in st.session_state.keys() if k.startswith("filter_") or k.startswith("_ui_")]
+        for k in keys_to_clear:
+            del st.session_state[k]
+        st.rerun()
+
     # ── Initialize & Restore States ───────────────────────────────────────
     if "filter_date_range" not in st.session_state:
         min_date = df["Visit_Date"].min().date()
@@ -83,11 +97,11 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
         st.session_state["_ui_visit_type"] = st.session_state["filter_visit_type"]
 
     with st.sidebar:
-        st.markdown("## Filters")
+        st.markdown('<div class="sidebar-header"><i class="fas fa-sliders-h"></i> Filters</div>', unsafe_allow_html=True)
         st.markdown("---")
 
         # ── Date Range ────────────────────────────────────────────────────
-        st.markdown("**Date Range**")
+        st.markdown('<div class="filter-label"><i class="far fa-calendar-alt"></i> Date Range</div>', unsafe_allow_html=True)
         min_date_val = df["Visit_Date"].min().date()
         max_date_val = df["Visit_Date"].max().date()
         
@@ -106,7 +120,7 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
         st.markdown("---")
 
         # ── Countries ─────────────────────────────────────────────────────
-        st.markdown("**Countries**")
+        st.markdown('<div class="filter-label"><i class="fas fa-globe-americas"></i> Countries</div>', unsafe_allow_html=True)
         st.pills(
             "Countries",
             options=["All"] + all_countries,
@@ -118,7 +132,7 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
         )
 
         # ── Seating Region ────────────────────────────────────────────────
-        st.markdown("**Seating Region**")
+        st.markdown('<div class="filter-label"><i class="fas fa-chair"></i> Seating Region</div>', unsafe_allow_html=True)
         st.pills(
             "Seating Region",
             options=["All"] + all_seating,
@@ -130,7 +144,7 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
         )
 
         # ── Gender ────────────────────────────────────────────────────────
-        st.markdown("**Gender**")
+        st.markdown('<div class="filter-label"><i class="fas fa-venus-mars"></i> Gender</div>', unsafe_allow_html=True)
         st.pills(
             "Gender",
             options=["All"] + all_genders,
@@ -142,7 +156,7 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
         )
 
         # ── Age Group ─────────────────────────────────────────────────────
-        st.markdown("**Age Group**")
+        st.markdown('<div class="filter-label"><i class="fas fa-user-friends"></i> Age Group</div>', unsafe_allow_html=True)
         st.pills(
             "Age Group",
             options=["All"] + all_age_groups,
@@ -154,7 +168,7 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
         )
 
         # ── Visit Type ────────────────────────────────────────────────────
-        st.markdown("**Visit Type**")
+        st.markdown('<div class="filter-label"><i class="fas fa-walking"></i> Visit Type</div>', unsafe_allow_html=True)
         st.pills(
             "Visit Type",
             options=["All", "First-time", "Repeat"],
@@ -167,14 +181,14 @@ def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
         st.markdown("---")
 
         # ── Reset Button ──────────────────────────────────────────────────
-        if st.button("Reset Filters", use_container_width=True):
+        if st.button("Reset All Filters", use_container_width=True):
             keys_to_clear = [k for k in st.session_state.keys() if k.startswith("filter_") or k.startswith("_ui_")]
             for k in keys_to_clear:
                 del st.session_state[k]
             st.rerun()
 
         # ── Stats ─────────────────────────────────────────────────────────
-        st.markdown("### Dataset")
+        st.markdown('<div class="filter-label" style="margin-top:20px;"><i class="fas fa-database"></i> Dataset Status</div>', unsafe_allow_html=True)
         st.caption("Total records: **800**")
 
     # ── Apply Filters ─────────────────────────────────────────────────────
