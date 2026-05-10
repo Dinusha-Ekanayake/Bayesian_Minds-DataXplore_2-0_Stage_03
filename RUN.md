@@ -41,7 +41,7 @@ pip install -r requirements.txt
 ### Step 4 — Run the dashboard
 
 ```bash
-streamlit run app.py
+streamlit run Home.py
 ```
 
 The dashboard will open automatically at **http://localhost:8501**
@@ -75,7 +75,7 @@ Make sure your repository is **public** (or you have Streamlit Cloud connected t
 1. Go to **https://share.streamlit.io**
 2. Sign in with GitHub
 3. Click **"New app"**
-4. Select your repository, branch (`main`), and main file (`app.py`)
+4. Select your repository, branch (`main`), and main file (`Home.py`)
 5. Click **"Deploy"**
 
 Your app will be live at:
@@ -94,7 +94,7 @@ Streamlit Cloud uses `.streamlit/config.toml` from your repo automatically — t
 ### Step 1 — Create `Procfile` in project root
 
 ```
-web: streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+web: streamlit run Home.py --server.port=$PORT --server.address=0.0.0.0
 ```
 
 ### Step 2 — Push to GitHub (if not already done)
@@ -112,7 +112,7 @@ git push origin main
 3. Connect your GitHub repository
 4. Set the following:
    - **Build Command:** `pip install -r requirements.txt`
-   - **Start Command:** `streamlit run app.py --server.port=$PORT --server.address=0.0.0.0`
+   - **Start Command:** `streamlit run Home.py --server.port=$PORT --server.address=0.0.0.0`
    - **Environment:** Python 3
    - **Plan:** Free
 5. Click **"Create Web Service"**
@@ -130,7 +130,7 @@ https://<service-name>.onrender.com
 
 ```
 project_root/
-├── app.py                          # Main entry point (Overview page)
+├── Home.py                          # Main entry point (Overview page)
 ├── requirements.txt                # Python dependencies
 ├── RUN.md                          # This file
 ├── PLAN.md                         # Implementation plan
@@ -165,4 +165,4 @@ project_root/
 | Charts not rendering | Ensure `plotly>=5.18.0` is installed |
 | OLS trendlines not working | Run `pip install statsmodels` |
 | Slow first load | Data is cached after first run — subsequent page switches are fast |
-| Port already in use | Run `streamlit run app.py --server.port 8502` |
+| Port already in use | Run `streamlit run Home.py --server.port 8502` |
