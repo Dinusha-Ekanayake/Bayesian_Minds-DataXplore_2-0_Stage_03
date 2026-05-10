@@ -19,7 +19,7 @@ The dashboard is divided into five main sections, accessible via the sidebar on 
 To switch pages, simply click on the page name in the sidebar.
 
 ## 3. Using Global Filters
-The sidebar contains several filters that allow you to slice the data. Filters applied on one page will persist as you navigate to other pages.
+The sidebar contains several filters that allow you to slice the data. Note that filters will reset to their default state ("All") whenever you navigate to a new page.
 
 | Filter | Description |
 |---|---|

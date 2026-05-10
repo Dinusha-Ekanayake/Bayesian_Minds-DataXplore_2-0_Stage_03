@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import inspect
 
 from src.data_prep import prepare_data
 from src.styles import inject_css
@@ -66,6 +67,19 @@ def _visit_type_callback():
 def render_sidebar_filters(df: pd.DataFrame) -> pd.DataFrame:
     """Render sidebar filters and return the filtered DataFrame."""
     
+    # ── Page Change Detection ─────────────────────────────────────────────
+    # Detect if we navigated to a new page to reset filters
+    current_page = inspect.stack()[1].filename
+    if "last_page" not in st.session_state:
+        st.session_state["last_page"] = current_page
+    
+    if st.session_state["last_page"] != current_page:
+        st.session_state["last_page"] = current_page
+        keys_to_clear = [k for k in st.session_state.keys() if k.startswith("filter_") or k.startswith("_ui_")]
+        for k in keys_to_clear:
+            del st.session_state[k]
+        st.rerun()
+
     # ── Initialize & Restore States ───────────────────────────────────────
     if "filter_date_range" not in st.session_state:
         min_date = df["Visit_Date"].min().date()
