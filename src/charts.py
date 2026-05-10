@@ -91,6 +91,25 @@ def fig_seating_share_by_country(df: pd.DataFrame) -> go.Figure:
     country_totals = grp.groupby("Country")["Total_Spend"].transform("sum")
     grp["Share"] = (grp["Total_Spend"] / country_totals) * 100
     
+    # Apply largest remainder method to ensure rounded percentages sum to exactly 100
+    grp["Rounded_Share"] = 0
+    for country in grp["Country"].unique():
+        mask = grp["Country"] == country
+        shares = grp.loc[mask, "Share"].fillna(0)
+        
+        if shares.sum() == 0:
+            continue
+            
+        floored = np.floor(shares).astype(int)
+        diff = int(100 - floored.sum())
+        
+        if diff > 0 and diff <= len(shares):
+            remainders = shares - floored
+            top_indices = remainders.nlargest(diff).index
+            floored.loc[top_indices] += 1
+            
+        grp.loc[mask, "Rounded_Share"] = floored
+    
     # Define country order by total revenue
     country_order = (
         grp.groupby("Country")["Total_Spend"]
@@ -107,7 +126,7 @@ def fig_seating_share_by_country(df: pd.DataFrame) -> go.Figure:
         orientation="h",
         color_discrete_map=SEATING_COLORS,
         category_orders={"Seating_Region": SEATING_ORDER, "Country": country_order},
-        text=grp["Share"].apply(lambda x: f"{x:.0f}%"),
+        text=grp["Rounded_Share"].astype(int).astype(str) + "%",
         labels={"Share": "Share of Seating (%)", "Seating_Region": "Seating Region"}
     )
     
