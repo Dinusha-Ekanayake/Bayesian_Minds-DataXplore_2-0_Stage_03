@@ -162,12 +162,12 @@ def inject_css():
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 16px;
-            padding: 20px 22px;
+            padding: 24px 28px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.07) inset;
             margin-bottom: 8px;
             border: 1px solid rgba(255,255,255,0.07);
             border-left: 4px solid;
-            height: 115px;
+            height: 140px;
             position: relative;
             overflow: hidden;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -184,7 +184,7 @@ def inject_css():
             box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.09) inset;
         }
         .kpi-value {
-            font-size: 28px;
+            font-size: 36px;
             font-weight: 700;
             color: #FAFAFA;
             margin: 0;
@@ -192,17 +192,17 @@ def inject_css():
             letter-spacing: -0.02em;
         }
         .kpi-label {
-            font-size: 11px;
+            font-size: 14px;
             color: rgba(156,163,175,0.9);
-            margin: 5px 0 0 0;
+            margin: 8px 0 0 0;
             text-transform: uppercase;
             letter-spacing: 0.07em;
             font-weight: 500;
         }
         .kpi-delta {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 500;
-            margin-top: 6px;
+            margin-top: 8px;
             letter-spacing: 0.01em;
         }
         .delta-positive { color: #00C48C; }
