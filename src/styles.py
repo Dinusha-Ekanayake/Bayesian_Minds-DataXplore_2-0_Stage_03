@@ -184,8 +184,8 @@ def inject_css():
             box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.09) inset;
         }
         .kpi-value {
-            font-size: 36px;
-            font-weight: 700;
+            font-size: 36px !important;
+            font-weight: 700 !important;
             color: #FAFAFA;
             margin: 0;
             line-height: 1.2;
