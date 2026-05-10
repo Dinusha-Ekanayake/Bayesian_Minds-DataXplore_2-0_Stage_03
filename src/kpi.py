@@ -18,6 +18,8 @@ def TotalRevenue(df: pd.DataFrame) -> float:
 
 
 def AverageSpendPerCustomer(df: pd.DataFrame) -> float:
+    if len(df) == 0:
+        return 0.0
     return df["Total_Spend"].mean()
 
 
@@ -28,10 +30,14 @@ def RepeatVisitRate(df: pd.DataFrame) -> float:
 
 
 def AverageSatisfaction(df: pd.DataFrame) -> float:
+    if len(df) == 0:
+        return 0.0
     return df["Satisfaction_Score"].mean()
 
 
 def AverageRecommendation(df: pd.DataFrame) -> float:
+    if len(df) == 0:
+        return 0.0
     return df["Recommendation_Likelihood"].mean()
 
 

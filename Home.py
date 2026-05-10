@@ -65,6 +65,7 @@ with col1:
     a fictional live entertainment venue.
 
     **Dataset:** 800 customer records across 9 months (Jan – Sep 2025), covering 7 countries and 4 seating tiers.
+    *(Note: September data is removed from the visualizations to prevent skewing time-based trends, as it is a partial month).*
 
     **Dashboard Sections:**
     | Page | Focus |
