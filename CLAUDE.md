@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 pip install -r requirements.txt
 
 # Run the dashboard
-streamlit run app.py
+streamlit run Home.py
 ```
 
 The app runs at http://localhost:8501. No build step or test suite exists.
@@ -31,7 +31,7 @@ data/Company_X_Audience.csv
 ```
 
 **Pages:**
-- `app.py` — Overview: KPIs and star schema visualization
+- `Home.py` — Overview: KPIs and star schema visualization
 - `pages/1_Revenue_Analysis.py` — Revenue by region/country/age
 - `pages/2_Customer_Analysis.py` — Demographics and spending patterns
 - `pages/3_Experience_Analysis.py` — Satisfaction and recommendation analysis

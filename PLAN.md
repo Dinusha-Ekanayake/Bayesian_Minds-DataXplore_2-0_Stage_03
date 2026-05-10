@@ -10,7 +10,7 @@ Building a Python Streamlit dashboard for a live entertainment venue's customer 
 
 ```
 project_root/
-|-- app.py                        # Landing/overview page (main entry point)
+|-- Home.py                        # Landing/overview page (main entry point)
 |-- requirements.txt              # Python dependencies
 |-- .streamlit/
 |   |-- config.toml               # Dark theme configuration
@@ -145,7 +145,7 @@ Sidebar filters (persistent across pages via `st.session_state`):
 
 ### Stage 7: Dashboard Pages
 
-#### Overview Page (`app.py`)
+#### Overview Page (`Home.py`)
 - **4 KPI cards**: Total Revenue, Total Customers, Repeat Visit Rate, Avg Satisfaction
 - Star schema diagram visualization
 - Project description & navigation guide
@@ -208,7 +208,7 @@ Sidebar filters (persistent across pages via `st.session_state`):
 
 ## Verification Checklist
 
-- [ ] `streamlit run app.py` - all 5 pages load without errors
+- [ ] `streamlit run Home.py` - all 5 pages load without errors
 - [ ] All sidebar filters work and persist across page navigation
 - [ ] KPI values match manual calculations from CSV
 - [ ] Charts are interactive (hover, zoom, click)
